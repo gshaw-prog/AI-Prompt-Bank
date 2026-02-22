@@ -15,13 +15,23 @@
             background-color: #f1f5f9; 
             color: #1e293b; 
             line-height: 1.6;
+            text-align: left;
         }
         
-        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; text-align: left; }
         
+        /* Serif font for the prompts */
+        .prompt-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.15rem;
+            line-height: 1.5;
+            color: #2dd4bf; /* Teal color from previous version */
+        }
+
         .bank-card { 
             @apply bg-white p-8 rounded-3xl shadow-lg border-l-8 relative mb-12; 
             border-left-color: var(--bisp-blue);
+            text-align: left;
         }
         
         .tool-badge { 
@@ -30,18 +40,24 @@
             color: #0369a1;
         }
         
-        .prompt-box { 
-            @apply bg-slate-900 text-teal-400 p-6 rounded-2xl text-xs border-l-4 border-teal-500 font-mono shadow-2xl mt-4 mb-2 cursor-pointer transition-all hover:bg-slate-800 active:scale-[0.98] block w-full text-left;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+        .prompt-container {
+            @apply bg-slate-900 rounded-2xl shadow-2xl mt-4 mb-6 relative overflow-hidden transition-all border-l-4 border-teal-500;
+        }
+
+        .prompt-content {
+            @apply p-6 pr-16 block w-full text-left cursor-pointer hover:bg-slate-800 transition-colors;
+        }
+
+        .copy-btn {
+            @apply absolute top-4 right-4 bg-teal-500/10 hover:bg-teal-500/30 text-teal-400 p-2 rounded-lg transition-all border border-teal-500/20;
         }
         
         .explanation { 
-            @apply mb-2 text-slate-600 text-sm leading-relaxed;
+            @apply mb-2 text-slate-600 text-sm leading-relaxed text-left;
         }
 
         .section-header {
-            @apply flex items-center gap-5 mb-10 mt-20 first:mt-0;
+            @apply flex items-center gap-5 mb-10 mt-20 first:mt-0 justify-start;
         }
 
         .header-icon {
@@ -53,13 +69,14 @@
             body { background: white; padding: 0; }
             .max-w-4xl { max-width: 100%; }
             .bank-card { break-inside: avoid; shadow: none; border: 1px solid #ddd; border-l-8; }
+            .copy-btn { display: none; }
         }
     </style>
 </head>
 <body class="p-6 md:p-12">
 
     <div class="max-w-4xl mx-auto">
-        <header class="bg-[#0975A7] rounded-[40px] p-10 md:p-16 mb-20 text-white shadow-2xl relative overflow-hidden">
+        <header class="bg-[#0975A7] rounded-[40px] p-10 md:p-16 mb-20 text-white shadow-2xl relative overflow-hidden text-left">
             <div class="relative z-10">
                 <h1 class="text-4xl md:text-7xl font-extrabold mb-4 tracking-tight">AI Prompt Bank</h1>
                 <p class="text-blue-100 text-xl md:text-3xl font-light">Copy-Paste Strategies for Data-Driven Teaching</p>
@@ -80,9 +97,19 @@
             <h3 class="text-2xl font-bold text-[#0975A7] mb-3">Grounding & Trend Analysis</h3>
             <p class="explanation">Use these prompts after uploading your CSV to identify the core story within your data.</p>
             
-            <button class="prompt-box" onclick="copyToClipboard(this)">"Analyze the attached tracking sheet. Identify the top 3 concepts mastered and the top 2 where a significant performance gap exists across the class. Which students show a high pre-test score but struggled with the final assessment?"</button>
+            <div class="prompt-container">
+                <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
+                <div class="prompt-content" onclick="copyAction(this)">
+                    <span class="prompt-text">"Analyze the attached tracking sheet. Identify the top 3 concepts mastered and the top 2 where a significant performance gap exists across the class. Which students show a high pre-test score but struggled with the final assessment?"</span>
+                </div>
+            </div>
 
-            <button class="prompt-box" onclick="copyToClipboard(this)">"Based on the results, identify which specific topics have the widest gap in class performance. Which students scored highly overall but struggled with one specific sub-topic (e.g. Mixed Fractions)?"</button>
+            <div class="prompt-container">
+                <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
+                <div class="prompt-content" onclick="copyAction(this)">
+                    <span class="prompt-text">"Based on the results, identify which specific topics have the widest gap in class performance. Which students scored highly overall but struggled with one specific sub-topic (e.g. Mixed Fractions)?"</span>
+                </div>
+            </div>
         </div>
 
         <div class="bank-card" style="border-left-color: #14b8a6;">
@@ -90,7 +117,12 @@
             <h3 class="text-2xl font-bold text-teal-600 mb-3">Misconception Deep-Dive</h3>
             <p class="explanation">Focusing on specific question data to understand why students are struggling.</p>
             
-            <button class="prompt-box" onclick="copyToClipboard(this)">"Look at Question [X] and [Y]. These had the lowest averages. What is the likely misconception holding these students back? Provide a summary of the 'gap' for each identified group of students."</button>
+            <div class="prompt-container">
+                <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
+                <div class="prompt-content" onclick="copyAction(this)">
+                    <span class="prompt-text">"Look at Question [X] and [Y]. These had the lowest averages. What is the likely misconception holding these students back? Provide a summary of the 'gap' for each identified group of students."</span>
+                </div>
+            </div>
         </div>
 
         <!-- Phase 3 & 4: Gemini -->
@@ -106,11 +138,16 @@
             <h3 class="text-2xl font-bold text-orange-600 mb-3">Strategic Grouping</h3>
             <p class="explanation">Move the insights from NotebookLM into Gemini to organize your classroom.</p>
             
-            <button class="prompt-box" onclick="copyToClipboard(this)">"I have these student groups based on their struggle with [Topic]. Group the class into three tiers: 
+            <div class="prompt-container">
+                <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
+                <div class="prompt-content" onclick="copyAction(this)">
+                    <span class="prompt-text">"I have these student groups based on their struggle with [Topic]. Group the class into three tiers: 
 Tier 1: Needs immediate reteach on foundational concepts.
 Tier 2: Needs fluency practice with scaffolds.
 Tier 3: Ready for non-routine problem solving. 
-Provide a suggested seating or intervention plan."</button>
+Provide a suggested seating or intervention plan."</span>
+                </div>
+            </div>
         </div>
 
         <div class="bank-card" style="border-left-color: #a855f7;">
@@ -118,9 +155,19 @@ Provide a suggested seating or intervention plan."</button>
             <h3 class="text-2xl font-bold text-purple-600 mb-3">Resource Synthesis</h3>
             <p class="explanation">Generating the actual materials for the lesson.</p>
             
-            <button class="prompt-box" onclick="copyToClipboard(this)">"Create a 10-minute reteach activity for the group that struggled with [Specific Topic], including a visual analogy, 3 check-for-understanding questions, and a 'Challenge' extension for those who finish early."</button>
+            <div class="prompt-container">
+                <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
+                <div class="prompt-content" onclick="copyAction(this)">
+                    <span class="prompt-text">"Create a 10-minute reteach activity for the group that struggled with [Specific Topic], including a visual analogy, 3 check-for-understanding questions, and a 'Challenge' extension for those who finish early."</span>
+                </div>
+            </div>
 
-            <button class="prompt-box" onclick="copyToClipboard(this)">"Generate a 'Success Criteria' checklist for [Topic] that is broken down into 4 simple, illustrated steps for my Tier 1 group."</button>
+            <div class="prompt-container">
+                <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
+                <div class="prompt-content" onclick="copyAction(this)">
+                    <span class="prompt-text">"Generate a 'Success Criteria' checklist for [Topic] that is broken down into 4 simple, illustrated steps for my Tier 1 group."</span>
+                </div>
+            </div>
         </div>
 
         <footer class="mt-20 flex justify-center no-print pb-12">
@@ -131,8 +178,13 @@ Provide a suggested seating or intervention plan."</button>
     </div>
 
     <script>
-        function copyToClipboard(element) {
-            const text = element.innerText;
+        function copyAction(element) {
+            // Find the prompt text within the container
+            const container = element.closest('.prompt-container');
+            const promptSpan = container.querySelector('.prompt-text');
+            const copyBtn = container.querySelector('.copy-btn');
+            const text = promptSpan.innerText.replace(/^"|"$/g, '');
+
             const el = document.createElement('textarea');
             el.value = text;
             document.body.appendChild(el);
@@ -140,9 +192,15 @@ Provide a suggested seating or intervention plan."</button>
             document.execCommand('copy');
             document.body.removeChild(el);
             
-            const originalText = element.innerText;
-            element.innerText = "COPIED TO CLIPBOARD!";
-            setTimeout(() => { element.innerText = originalText; }, 1200);
+            // Visual feedback
+            const originalIcon = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            copyBtn.classList.add('bg-teal-500', 'text-white');
+            
+            setTimeout(() => { 
+                copyBtn.innerHTML = originalIcon;
+                copyBtn.classList.remove('bg-teal-500', 'text-white');
+            }, 1500);
         }
     </script>
 </body>
