@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Bank | BISP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700;800&display=swap');
+        :root { --bisp-blue: #0975A7; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f8fafc; 
+            color: #1e293b; 
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+        
+        .bank-card { 
+            @apply bg-white p-8 rounded-3xl shadow-md border-t-8 mb-12 relative; 
+            border-top-color: var(--bisp-blue);
+        }
+        
+        .stage-label { 
+            @apply inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 bg-slate-100 text-slate-500;
+        }
+        
+        .prompt-item { 
+            @apply mb-8 last:mb-0;
+        }
+        
+        .prompt-item h4 {
+            @apply text-slate-800 font-bold mb-2 flex items-center gap-2;
+        }
+
+        .prompt-code { 
+            @apply bg-slate-900 text-teal-400 p-5 rounded-2xl text-xs border-l-4 border-teal-500 font-mono shadow-inner my-3 cursor-pointer transition-all hover:bg-slate-800 active:scale-[0.98] block w-full text-left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .context-note {
+            @apply text-sm text-slate-500 italic mb-2;
+        }
+
+        @media print {
+            .no-print { display: none; }
+            body { background: white; padding: 0; }
+            .max-w-4xl { max-width: 100%; }
+            .bank-card { break-inside: avoid; shadow: none; border: 1px solid #ddd; border-t-8; }
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="bg-[#0975A7] rounded-[40px] p-10 md:p-12 mb-16 text-white shadow-2xl relative overflow-hidden">
+            <div class="relative z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-2 tracking-tight">AI Prompt Bank</h1>
+                <p class="text-blue-100 text-lg md:text-2xl font-light">Copy-Paste Strategies for Data-Driven Teaching</p>
+            </div>
+            <i class="fa-solid fa-terminal absolute -right-10 -bottom-10 text-white/10 text-[180px]"></i>
+        </header>
+
+        <!-- Section 1: NotebookLM -->
+        <div class="bank-card" style="border-top-color: #0975A7;">
+            <span class="stage-label">Phase 1: Analysis (NotebookLM)</span>
+            <h2 class="text-2xl font-bold text-[#0975A7] mb-6">Deep Data Interrogation</h2>
+            
+            <div class="prompt-item">
+                <p class="context-note">To identify broader class trends and curriculum gaps:</p>
+                <button class="prompt-code" onclick="copyToClipboard(this)">"Analyze the attached tracking sheet. Rank the curriculum topics from 'Most Mastered' to 'Highest Need'. For the 'Highest Need' topics, identify if the issue is class-wide or limited to a specific sub-group of students."</button>
+            </div>
+
+            <div class="prompt-item">
+                <p class="context-note">To find students whose performance doesn't match their potential:</p>
+                <button class="prompt-code" onclick="copyToClipboard(this)">"Compare 'Prior Knowledge %' with 'Total %'. Highlight any 'underperformers' (high prior knowledge but low assessment score) and 'overperformers'. What specific questions caused the underperformers to lose the most marks?"</button>
+            </div>
+        </div>
+
+        <!-- Section 2: Diagnosing -->
+        <div class="bank-card" style="border-top-color: #14b8a6;">
+            <span class="stage-label">Phase 2: Diagnosis (NotebookLM)</span>
+            <h2 class="text-2xl font-bold text-teal-600 mb-6">Misconception Hunting</h2>
+
+            <div class="prompt-item">
+                <p class="context-note">To drill into the 'Why' behind specific errors:</p>
+                <button class="prompt-code" onclick="copyToClipboard(this)">"Look at the results for [Topic, e.g., Mixed Fractions]. Based on the mark distribution, what is the most likely misconception being demonstrated? Is it a procedural error or a conceptual misunderstanding of the base value?"</button>
+            </div>
+
+            <div class="prompt-item">
+                <p class="context-note">To prepare for a targeted intervention session:</p>
+                <button class="prompt-code" onclick="copyToClipboard(this)">"Extract a list of names for students who scored 2/5 or lower on [Question X]. Summarize their common weaknesses in one paragraph so I can use this as context for a resource generator."</button>
+            </div>
+        </div>
+
+        <!-- Section 3: Gemini Resource Creation -->
+        <div class="bank-card" style="border-top-color: #f97316;">
+            <span class="stage-label">Phase 3: Differentiation (Gemini)</span>
+            <h2 class="text-2xl font-bold text-orange-600 mb-6">Tiered Resource Generation</h2>
+
+            <div class="prompt-item">
+                <p class="context-note">To create a 3-tiered 'Do Now' activity:</p>
+                <button class="prompt-code" onclick="copyToClipboard(this)">"I am teaching [Topic]. Create a 5-minute starter with 3 levels: 
+Tier 1 (Support): Visual-based questions for students struggling with [Gap]. 
+Tier 2 (Core): Standard fluency questions. 
+Tier 3 (Challenge): A non-routine problem solving task requiring [Topic] application."</button>
+            </div>
+
+            <div class="prompt-item">
+                <p class="context-note">To generate scaffolds for a specific group:</p>
+                <button class="prompt-code" onclick="copyToClipboard(this)">"Create a 'Help Sheet' for a group of students who find [Topic] difficult. Include a step-by-step checklist, a worked example with annotated 'Why' steps, and a glossary of 3 key terms."</button>
+            </div>
+        </div>
+
+        <!-- Section 4: Feedback & Growth -->
+        <div class="bank-card" style="border-top-color: #a855f7;">
+            <span class="stage-label">Phase 4: Feedback (Gemini)</span>
+            <h2 class="text-2xl font-bold text-purple-600 mb-6">Closing the Loop</h2>
+
+            <div class="prompt-item">
+                <p class="context-note">To generate personalized feedback comments:</p>
+                <button class="prompt-code" onclick="copyToClipboard(this)">"Based on these scores [Paste Scores], write a 2-sentence feedback comment for a student who struggled with [Topic]. The first sentence should praise their success in [Area of Strength], and the second should give a specific 'Next Step' question to solve."</button>
+            </div>
+        </div>
+
+        <footer class="mt-16 flex justify-center no-print pb-12">
+            <button onclick="window.print()" class="bg-[#0975A7] text-white px-10 py-4 rounded-full font-bold shadow-xl hover:bg-blue-800 transition transform hover:-translate-y-1 active:scale-95">
+                <i class="fa-solid fa-print mr-2"></i> Print Prompt Bank
+            </button>
+        </footer>
+    </div>
+
+    <script>
+        function copyToClipboard(button) {
+            const text = button.innerText.replace(/^"|"$/g, '');
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const originalText = button.innerText;
+            button.innerText = "PROMPT COPIED!";
+            button.style.color = "#ffffff";
+            setTimeout(() => { 
+                button.innerText = originalText; 
+                button.style.color = "";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
