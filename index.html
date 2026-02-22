@@ -25,7 +25,7 @@
             font-family: 'Times New Roman', Times, serif;
             font-size: 1.15rem;
             line-height: 1.5;
-            color: #2dd4bf; /* Teal color from previous version */
+            color: #2dd4bf; 
         }
 
         .bank-card { 
@@ -84,18 +84,18 @@
             <i class="fa-solid fa-terminal absolute -right-10 -bottom-10 text-white/10 text-[200px]"></i>
         </header>
 
-        <!-- Phase 1 & 2: NotebookLM -->
+        <!-- Stage 1: Analysis -->
         <div class="section-header">
             <div class="header-icon bg-[#0975A7]">
-                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                <i class="fa-solid fa-chart-simple"></i>
             </div>
-            <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Phase 1 & 2: Analysis & Diagnosis</h2>
+            <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Stage 1: Grounding & Analysis</h2>
         </div>
 
-        <div class="bank-card">
+        <div class="bank-card" style="border-left-color: #0975A7;">
             <div class="tool-badge"><i class="fa-solid fa-book-open mr-2"></i> NotebookLM</div>
-            <h3 class="text-2xl font-bold text-[#0975A7] mb-3">Grounding & Trend Analysis</h3>
-            <p class="explanation">Use these prompts after uploading your CSV to identify the core story within your data.</p>
+            <h3 class="text-2xl font-bold text-[#0975A7] mb-3">Broad Trend Identification</h3>
+            <p class="explanation">Use these prompts after uploading your assessment CSV to identify the core story within your class data.</p>
             
             <div class="prompt-container">
                 <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
@@ -112,10 +112,18 @@
             </div>
         </div>
 
-        <div class="bank-card" style="border-left-color: #14b8a6;">
-            <div class="tool-badge" style="background-color: #f0fdfa; color: #0d9488;"><i class="fa-solid fa-microscope mr-2"></i> NotebookLM</div>
-            <h3 class="text-2xl font-bold text-teal-600 mb-3">Misconception Deep-Dive</h3>
-            <p class="explanation">Focusing on specific question data to understand why students are struggling.</p>
+        <!-- Stage 2: Diagnosis -->
+        <div class="section-header">
+            <div class="header-icon bg-teal-600">
+                <i class="fa-solid fa-microscope"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Stage 2: Diagnosing Misconceptions</h2>
+        </div>
+
+        <div class="bank-card" style="border-left-color: #0d9488;">
+            <div class="tool-badge" style="background-color: #f0fdfa; color: #0d9488;"><i class="fa-solid fa-brain mr-2"></i> NotebookLM</div>
+            <h3 class="text-2xl font-bold text-teal-600 mb-3">Targeted Skill Deep-Dive</h3>
+            <p class="explanation">Focusing on specific question data to understand exactly why students are struggling.</p>
             
             <div class="prompt-container">
                 <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
@@ -125,18 +133,18 @@
             </div>
         </div>
 
-        <!-- Phase 3 & 4: Gemini -->
+        <!-- Stage 3: Strategic Grouping -->
         <div class="section-header">
             <div class="header-icon bg-orange-500">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <i class="fa-solid fa-users-viewfinder"></i>
             </div>
-            <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Phase 3 & 4: Differentiation & Resources</h2>
+            <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Stage 3: Strategic Grouping</h2>
         </div>
 
         <div class="bank-card" style="border-left-color: #f97316;">
-            <div class="tool-badge" style="background-color: #fff7ed; color: #c2410c;"><i class="fa-solid fa-users-viewfinder mr-2"></i> Gemini</div>
-            <h3 class="text-2xl font-bold text-orange-600 mb-3">Strategic Grouping</h3>
-            <p class="explanation">Move the insights from NotebookLM into Gemini to organize your classroom.</p>
+            <div class="tool-badge" style="background-color: #fff7ed; color: #c2410c;"><i class="fa-solid fa-layer-group mr-2"></i> Gemini</div>
+            <h3 class="text-2xl font-bold text-orange-600 mb-3">Tiered Classroom Planning</h3>
+            <p class="explanation">Move the insights from NotebookLM into Gemini to organise your classroom and intervention groups.</p>
             
             <div class="prompt-container">
                 <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
@@ -150,10 +158,18 @@ Provide a suggested seating or intervention plan."</span>
             </div>
         </div>
 
+        <!-- Stage 4: Resource Synthesis -->
+        <div class="section-header">
+            <div class="header-icon bg-purple-600">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-slate-800 tracking-tight">Stage 4: Resource Synthesis</h2>
+        </div>
+
         <div class="bank-card" style="border-left-color: #a855f7;">
             <div class="tool-badge" style="background-color: #faf5ff; color: #7e22ce;"><i class="fa-solid fa-pen-nib mr-2"></i> Gemini</div>
-            <h3 class="text-2xl font-bold text-purple-600 mb-3">Resource Synthesis</h3>
-            <p class="explanation">Generating the actual materials for the lesson.</p>
+            <h3 class="text-2xl font-bold text-purple-600 mb-3">Custom Material Generation</h3>
+            <p class="explanation">Generating the actual teaching materials, checklists, and scaffolds for the lesson.</p>
             
             <div class="prompt-container">
                 <button class="copy-btn" title="Copy Prompt" onclick="copyAction(this)"><i class="fa-regular fa-copy"></i></button>
@@ -179,7 +195,6 @@ Provide a suggested seating or intervention plan."</span>
 
     <script>
         function copyAction(element) {
-            // Find the prompt text within the container
             const container = element.closest('.prompt-container');
             const promptSpan = container.querySelector('.prompt-text');
             const copyBtn = container.querySelector('.copy-btn');
@@ -192,7 +207,6 @@ Provide a suggested seating or intervention plan."</span>
             document.execCommand('copy');
             document.body.removeChild(el);
             
-            // Visual feedback
             const originalIcon = copyBtn.innerHTML;
             copyBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
             copyBtn.classList.add('bg-teal-500', 'text-white');
